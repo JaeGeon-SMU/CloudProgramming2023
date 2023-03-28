@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
+
+    <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
     <title>메인페이지</title>
 </head>
 <body>
-<nav>
-    <a href="/blog/">BLOG</a>
-</nav>
+{% include 'blog/navbar.html' %}
     <h1>클라우드프로그래밍 잼잼</h1>
 </body>
 </html>

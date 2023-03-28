@@ -1,3 +1,5 @@
+import os.path
+
 from django.db import models
 
 #요거 건들면 makemigrations 해야함
@@ -18,3 +20,6 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return f'/blog/{self.pk}'
+
+    def get_file_name(self):
+        return os.path.basename(self.file_upload.name)

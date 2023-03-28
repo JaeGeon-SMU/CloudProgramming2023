@@ -83,8 +83,11 @@
         <!-- Post Content -->
         <p>{{ post.content }}</p>
       <!--bootstrap docs에서 검색해서 이용-->
-        <a href="{{ post.file_upload.url }}" class="btn btn-danger">첨부파일 다운로드</a>
-        {{ post.get_file_name }}
+        {% if post.file_upload %}
+            <a href="{{ post.file_upload.url }}" class="btn btn-danger">첨부파일 다운로드</a>
+            {{ post.get_file_name }}
+        {% endif %}
+
         <hr>
 
         <!-- Comments Form -->

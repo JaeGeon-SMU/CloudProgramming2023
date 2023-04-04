@@ -3,10 +3,23 @@ import os.path
 from django.contrib.auth.models import User
 from django.db import models
 
+class Tag(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+    slug = models.SlugField(max_length=50, unique=True, allow_unicode=True)
+
+    def get_absolute_url(self):
+        return f'/blog/tag/{self.slug}'
+
+    def __str__(self):
+        return self.name
+
 class Category(models.Model):
     name = models.CharField(max_length=20,unique=True)
     #slug 읽을수 있는 텍스트로 된 url사용하고 싶을때 사용
     slug = models.SlugField(max_length=50, unique=True , allow_unicode=True)
+
+    def get_absolute_url(self):
+        return f'/blog/category/{self.slug}'
 
     def __str__(self):
      return self.name
@@ -30,6 +43,7 @@ class Post(models.Model):
 
     author=models.ForeignKey(User,null=True,on_delete=models.SET_NULL)
     category = models.ForeignKey(Category,null=True,on_delete=models.SET_NULL)
+    tag=models.ManyToManyField(Tag)
 
     def __str__(self):
         return f'[{self.pk}] {self.title} - {self.author}'

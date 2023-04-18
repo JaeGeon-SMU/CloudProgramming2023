@@ -27,7 +27,7 @@
         <hr>
 
         <!-- Post Content -->
-        <p>{{ post.content }}</p>
+        <p>{{ post.get_content_markdown | safe }}</p>
       <!--bootstrap docs에서 검색해서 이용-->
         {% if post.file_upload %}
             <a href="{{ post.file_upload.url }}" class="btn btn-danger">첨부파일 다운로드</a>

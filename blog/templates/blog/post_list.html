@@ -27,7 +27,7 @@
                     {% endif %}
                     <div class="card-body">
                         <h2 class="card-title">{{ p.title}} ({{ p.category }})</h2>
-                        <p class="card-text">{{ p.hook_message | truncatewords:30 }}</p>
+                        <p class="card-text">{{ p.get_content_markdown |safe| truncatewords:30 }}</p>
                         <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
                     </div>
                     <div class="card-footer text-muted">

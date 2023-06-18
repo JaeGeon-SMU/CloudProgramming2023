@@ -8,7 +8,7 @@ from .models import Post, Category, Tag
 
 class PostUpdate(LoginRequiredMixin,UpdateView):
     model=Post
-    fields = ['title', 'content', 'head_image', 'file_upload', 'category', 'tag']
+    fields = ['title','calorie','cm','kg', 'gender','content', 'head_image','img1','img2','img3', 'file_upload', 'category', 'tag']
 
     template_name = 'blog/post_update.html'
     def dispatch(self, request, *args, **kwargs):
@@ -18,7 +18,7 @@ class PostUpdate(LoginRequiredMixin,UpdateView):
             return PermissionError
 class PostCreate(LoginRequiredMixin,UserPassesTestMixin,CreateView):
     model = Post
-    fields = ['title', 'content', 'head_image', 'file_upload', 'category', 'tag']
+    fields = ['title','calorie','cm','kg', 'gender','content', 'head_image','img1','img2','img3', 'file_upload', 'category', 'tag']
 
 
     def test_func(self):
@@ -58,6 +58,9 @@ class PostDetail(DetailView):
         context['comment_form'] = CommentForm
 
         return context
+
+def aboutme(request):
+    return render(request,'blog/aboutme.html')
 
 
 def categories_page(request,slug):

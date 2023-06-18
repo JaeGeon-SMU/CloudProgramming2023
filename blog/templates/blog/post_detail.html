@@ -24,6 +24,15 @@
           {% if post.head_image %}
             <img class="img-fluid rounded" src="{{ post.head_image.url }}" alt="">
           {% endif %}
+          {% if post.img1 %}
+            <img class="img-fluid rounded" src="{{ post.img1.url }}" alt="">
+          {% endif %}
+          {% if post.img2 %}
+            <img class="img-fluid rounded" src="{{ post.img2.url }}" alt="">
+          {% endif %}
+          {% if post.img3 %}
+            <img class="img-fluid rounded" src="{{ post.img3.url }}" alt="">
+          {% endif %}
 
         <hr>
 
@@ -38,6 +47,45 @@
             <a href="/blog/update_post/{{ post.pk }}">글 수정하기</a>
         {% endif %}
 
+        <hr>
+
+        <div class="result" id="result_area" style="">
+        <h4>{{ post.author }}님의 필요열량 입니다.</h4>
+            <p></p>
+			<table class="tblDef">
+				<colgroup>
+					<col style="width: 55%;">
+					<col style="width: auto;">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>표준체중</th>
+						<td><span class="fcRed" id="kg">{{ post.get_recommend_kg}}</span>kg</td>
+					</tr>
+					<tr>
+						<th>체질량지수</th>
+						<td><span class="fcRed" id="kgm2">{{ post.get_calculate_bmi}}</span>kg/㎡</td>
+					</tr>
+					<tr>
+						<th>필요열량 </th>
+						<td><span class="fcRed" id="kcal">{{ post.get_recommend_kcal }}</span>kcal</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div>
+				<p>
+					표준체중은 <span class="fcRed" id="kg2"> {{ post.get_recommend_kg}}</span>kg입니다.<br>
+					현재체중은 <span class="fcRed" id="status1">{{ post.get_calculate_pibw }}</span>입니다.<br>
+					[<span class="fcRed" id="status2">체중감량</span>]을 위해 하루 <span class="fcRed" id="kcal2">{{ post.get_recommend_kcal }}</span>kcal의 열량 섭취가 권장됩니다.<br>
+					‘보통의 활동을 하는 경우’에 해당되는 ‘하루 필요열량’입니다
+				</p>
+
+				<p class="rel">
+					나이, 활동량, 치료목표 등에 따라 가감이 필요할 수 있으므로 자세한 내용은 전문가와 상의하시기 바랍니다.
+				</p>
+			</div>
+		</div>
         <hr>
 
         {% if post.tag.exists %}
@@ -56,6 +104,7 @@
               <div class="form-group">
                   {{ comment_form |crispy}}
               </div>
+
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div>
@@ -74,31 +123,5 @@
             {% endfor %}
         {% endif %}
 
-
-        <!-- Comment with nested comments -->
-        <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-            <div class="media mt-4">
-              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-            </div>
-
-            <div class="media mt-4">
-              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-            </div>
-
-          </div>
-        </div>
 
 {% endblock %}

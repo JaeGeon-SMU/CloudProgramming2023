@@ -50,7 +50,7 @@
         <hr>
 
         <div class="result" id="result_area" style="">
-        <h4>{{ post.author }}님의 필요열량 입니다.</h4>
+        <h4>{{ post.author }}님의 건강 정보 입니다.</h4>
             <p></p>
 			<table class="tblDef">
 				<colgroup>
@@ -78,7 +78,8 @@
 					표준체중은 <span class="fcRed" id="kg2"> {{ post.get_recommend_kg}}</span>kg입니다.<br>
 					현재체중은 <span class="fcRed" id="status1">{{ post.get_calculate_pibw }}</span>입니다.<br>
 					[<span class="fcRed" id="status2">체중감량</span>]을 위해 하루 <span class="fcRed" id="kcal2">{{ post.get_recommend_kcal }}</span>kcal의 열량 섭취가 권장됩니다.<br>
-					‘보통의 활동을 하는 경우’에 해당되는 ‘하루 필요열량’입니다
+					‘보통의 활동을 하는 경우’에 해당되는 ‘하루 필요열량’입니다<br>
+                    필요 열량보다 <span class="fcRed" id="kg2"> {{ post.get_kcal_over_check}}</span><br>
 				</p>
 
 				<p class="rel">

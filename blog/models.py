@@ -93,6 +93,19 @@ class Post(models.Model):
             grade="고도비만"
         return grade
 
+    def get_kcal_over_check(self):
+        if self.gender == 'M':
+            recommend_kcal = self.cm/100 * self.cm/100 * 22 * 30
+            if self.calorie-recommend_kcal > 0 :
+                return f"{round(self.calorie-recommend_kcal,2)}kcal 만큼 더 먹었습니다"
+            else :
+                return f"{round(recommend_kcal-self.calorie,2)}kcal 만큼 덜 먹었습니다"
+        elif self.gender =='W':
+            recommend_kcal = self.cm/100 * self.cm/100 * 21 * 30
+            if self.calorie-recommend_kcal > 0 :
+                return f"{round(self.calorie-recommend_kcal,2)}kcal 만큼 더 먹었습니다"
+            else :
+                return f"{round(recommend_kcal-self.calorie,2)}kcal 만큼 덜 먹었습니다"
 
     #bmi 지수 계산
     def get_calculate_bmi(self):

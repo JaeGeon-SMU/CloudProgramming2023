@@ -4,9 +4,31 @@
 <head>
     <title>Blog</title>
         <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
-
     <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
 </head>
+<style>
+
+.al{
+    width:1110px ;
+}
+.con{
+    display: flex;
+    width:1110px
+}
+img{
+    max-width: 100%;
+ max-height: 100%;
+}
+.first_box{
+    width: 800px;
+}
+.second_box{
+    width: 310px;
+   display: flex;
+  justify-content:right;
+}
+
+</style>
 
 <body>
 {% include 'blog/navbar.html' %}
@@ -18,7 +40,41 @@
             <div class="col-md-8 col-lg-9">
 
                {% block main_area %}
-
+               <div class="al">
+                   <div class="con">
+                        <div class="first_box">
+                            <h1>안녕하세요, 이재건입니다.</h1>
+                            <hr>
+                            <br>
+                            <p>● Education </p>
+                            <p> &nbsp &nbsp  - &nbsp 상명대학교 컴퓨터과학과 4학년 재학중</p>
+                            <br>
+                            <p>● Certification </p>
+                            <p> &nbsp &nbsp  - &nbsp Sqld</p>
+                            <p> &nbsp &nbsp  - &nbsp 정보처리기사(필기)</p>
+                            <p> &nbsp &nbsp  - &nbsp Jlpt N2</p>
+                        </div>
+                        <div class="second_box">
+                            <img  src="\media\blog\images\2023\06\19\photo.jpg">
+                        </div>
+                   </div>
+               </div>
+               <div class="al">
+               <hr>
+               <h2>PORTFOLIO</h2>
+               <br>
+               <p>● 원자재 모니터링 웹 사이트 </p>
+                    <p> &nbsp &nbsp  - &nbsp ElasticSearch를 이용한 원자재 모니터링 웹 사이트</p>
+                    <p>&nbsp &nbsp  - &nbsp <a href="https://github.com/JaeGeon-SMU/elastic">github link</a></p>
+               <br>
+               <p>● 클라우드 프로그래밍 웹 사이트 </p>
+                    <p> &nbsp &nbsp  - &nbsp django를 이용한 웹 사이트</p>
+                    <p>&nbsp &nbsp  - &nbsp <a href="https://github.com/JaeGeon-SMU/CloudProgramming2023">github link</a></p>
+               <br>
+               <p>●  일기 작성 웹 </p>
+                    <p> &nbsp &nbsp  - &nbsp spring boot를 이용한 웹 사이트(진행중)</p>
+                    <p>&nbsp &nbsp  - &nbsp <a href="https://github.com/JaeGeon-SMU/capstone-back">github link</a></p>
+               </div>
                {% endblock %}
             </div>
 
@@ -42,3 +98,4 @@
 </body>
 
 </html>
+

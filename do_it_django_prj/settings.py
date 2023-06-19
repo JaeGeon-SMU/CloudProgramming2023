@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'markdownx',
-
+    'food',
     "allauth",
     "allauth.account",
     "allauth.socialaccount",

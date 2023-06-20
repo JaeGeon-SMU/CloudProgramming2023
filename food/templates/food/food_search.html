@@ -1,0 +1,16 @@
+{%  extends 'food/base2.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block main_area %}
+    <h1>검색할 음식의 조건 입력</h1>
+    <h5>원하는 값 이하로 검색하고 싶은 조건은 음수로 표현해주세요 ex) 231kcal 이하는 -231 </h5>
+    <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+    <table>
+        {{ form | crispy }}
+    </table>
+    <button type="submit">글쓰기</button>
+    </form>
+
+    <br>
+{% endblock %}

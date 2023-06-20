@@ -8,15 +8,62 @@
     <script src="https://kit.fontawesome.com/726bbd6862.js" crossorigin="anonymous"></script>
     <title>메인 페이지</title>
 </head>
+<style>
+    body{
+        text-align: center;
+        margin: auto;
+    }
+    #ccc{
+        width: 1300px;
+        height:400px;
+        display: flex;
+        text-align: center;
+    }
+    .ddd{
+        width: 200px;
+        height: 200px;
+    }
+    #img-block{
+        width:250px;
+        heigth:300px;
+        margin-left: 200px;
+        margin-top: 50px;
+    }
+    .qqq{
+        width: 1200px;
+        height:500px
+    }
+    .vvv{
+        margin-top: 30px;
+    }
+
+</style>
 <body>
 {% include 'blog/navbar.html' %}
-<h1>대문페이지</h1>
+<img class="qqq" src="\media\blog\images\main.jpg">
+<br>
+<h2 class="vvv">최신 글</h2>
+<hr>
+    <div id="ccc" >
+
     {% for post in recent_posts %}
-    <div>
-        <h4><a href="{{ post.get_absolute_url }}"> {{ post.title}} by {{ post.author }}</a></h4>
+    <div id="img-block">
+        {% if post.head_image %}
+                        <img class="ddd" src="{{ post.head_image.url }}" alt="Card image cap">
+        {% else %}
+        <img class="ddd" src="\media\blog\images\2023\03\28\2d.png" alt="Card image cap">
+                    {% endif %}
+        <h4><a href="{{ post.get_absolute_url }}"> {{ post.title}} </a></h4>
+        <h6>by {{ post.author }}</h6>
         <p>{{ post.content|truncatewords:30 }}</p>
     </div>
-{% endfor %}
+
+
+    {% endfor %}
+
+    </div>
+    <br>
+
 {% include 'blog/footer.html' %}
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

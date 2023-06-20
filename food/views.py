@@ -28,14 +28,72 @@ class FoodSearchResult(DetailView):
     template_name = 'food/food_search_result.html'
 
 def food_result_view(request,pk):
-    self=SearchFood.objects.get(pk=pk)
     self = SearchFood.objects.get(pk=pk)
     df = pd.read_excel('food/foo.xlsx')
     if self.kcal > self.zero:
         if self.protein > self.zero:
             if self.fat > self.zero:
-                if self.carbohydrate > 0:
+                if self.carbohydrate > self.zero:
                     sub_df = df[(df['에너지(㎉)'] >= self.kcal) & (df['단백질(g)'] >= self.protein) &
                                 (df['지방(g)'] >= self.fat) & (df['탄수화물(g)'] >= self.carbohydrate)]
+                else :
+                    sub_df = df[(df['에너지(㎉)'] >= self.kcal) & (df['단백질(g)'] >= self.protein) &
+                                (df['지방(g)'] >= self.fat) & (df['탄수화물(g)'] <= self.carbohydrate)]
+            else:
+                if self.carbohydrate > self.zero:
+                    sub_df = df[(df['에너지(㎉)'] >= self.kcal) & (df['단백질(g)'] >= self.protein) &
+                                (df['지방(g)'] <= self.fat) & (df['탄수화물(g)'] >= self.carbohydrate)]
+                else :
+                    sub_df = df[(df['에너지(㎉)'] >= self.kcal) & (df['단백질(g)'] >= self.protein) &
+                                (df['지방(g)'] <= self.fat) & (df['탄수화물(g)'] <= self.carbohydrate)]
+        else:
+            if self.fat > self.zero:
+                if self.carbohydrate > self.zero:
+                    sub_df = df[(df['에너지(㎉)'] >= self.kcal) & (df['단백질(g)'] <= self.protein) &
+                                (df['지방(g)'] >= self.fat) & (df['탄수화물(g)'] >= self.carbohydrate)]
+                else:
+                    sub_df = df[(df['에너지(㎉)'] >= self.kcal) & (df['단백질(g)'] <= self.protein) &
+                                (df['지방(g)'] >= self.fat) & (df['탄수화물(g)'] <= self.carbohydrate)]
+            else:
+                if self.carbohydrate > self.zero:
+                    sub_df = df[(df['에너지(㎉)'] >= self.kcal) & (df['단백질(g)'] <= self.protein) &
+                                (df['지방(g)'] <= self.fat) & (df['탄수화물(g)'] >= self.carbohydrate)]
+                else:
+                    sub_df = df[(df['에너지(㎉)'] >= self.kcal) & (df['단백질(g)'] <= self.protein) &
+                                (df['지방(g)'] <= self.fat) & (df['탄수화물(g)'] <= self.carbohydrate)]
+    else:
+        if self.protein > self.zero:
+            if self.fat > self.zero:
+                if self.carbohydrate > self.zero:
+                    sub_df = df[(df['에너지(㎉)'] <= self.kcal) & (df['단백질(g)'] >= self.protein) &
+                                (df['지방(g)'] >= self.fat) & (df['탄수화물(g)'] >= self.carbohydrate)]
+                else:
+                    sub_df = df[(df['에너지(㎉)'] <= self.kcal) & (df['단백질(g)'] >= self.protein) &
+                                (df['지방(g)'] >= self.fat) & (df['탄수화물(g)'] <= self.carbohydrate)]
+            else:
+                if self.carbohydrate > self.zero:
+                    sub_df = df[(df['에너지(㎉)'] <= self.kcal) & (df['단백질(g)'] >= self.protein) &
+                                (df['지방(g)'] <= self.fat) & (df['탄수화물(g)'] >= self.carbohydrate)]
+                else:
+                    sub_df = df[(df['에너지(㎉)'] <= self.kcal) & (df['단백질(g)'] >= self.protein) &
+                                (df['지방(g)'] <= self.fat) & (df['탄수화물(g)'] <= self.carbohydrate)]
+        else:
+            if self.fat > self.zero:
+                if self.carbohydrate > self.zero:
+                    sub_df = df[(df['에너지(㎉)'] <= self.kcal) & (df['단백질(g)'] <= self.protein) &
+                                (df['지방(g)'] >= self.fat) & (df['탄수화물(g)'] >= self.carbohydrate)]
+                else:
+                    sub_df = df[(df['에너지(㎉)'] <= self.kcal) & (df['단백질(g)'] <= self.protein) &
+                                (df['지방(g)'] >= self.fat) & (df['탄수화물(g)'] <= self.carbohydrate)]
+            else:
+                if self.carbohydrate > self.zero:
+                    sub_df = df[(df['에너지(㎉)'] <= self.kcal) & (df['단백질(g)'] <= self.protein) &
+                                (df['지방(g)'] <= self.fat) & (df['탄수화물(g)'] >= self.carbohydrate)]
+                else:
+                    sub_df = df[(df['에너지(㎉)'] <= self.kcal) & (df['단백질(g)'] <= self.protein) &
+                                (df['지방(g)'] <= self.fat) & (df['탄수화물(g)'] <= self.carbohydrate)]
+
+
+
     context={'sub_df':sub_df.to_html(justify='center')}
     return render(request,'food/food_search_result.html',context)

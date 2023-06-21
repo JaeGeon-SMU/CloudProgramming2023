@@ -1,0 +1,24 @@
+<script>
+
+
+
+
+
+
+
+
+</script>
+{%  extends 'food/base2.html' %}
+
+
+
+{% block main_area %}
+    <h3>검색하신 결과입니다</h3>
+    <hr>
+    <h5>오늘은 권장 섭취량보다 </h5>
+    <h3 style="display: inline">{{ total }}</h3>
+    <h5 style="display: inline"> kcal만큼 더 드셨습니다</h5>
+    <h4>오늘 하루 {{ fatter }} kg 만큼 체지방이 늘었습니다</h4>
+    <br>
+
+{% endblock %}

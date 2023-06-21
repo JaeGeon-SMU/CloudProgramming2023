@@ -2,6 +2,14 @@ import pandas as pd
 from django.db import models
 
 # Create your models here.
+class SearchTime(models.Model):
+    time=models.IntegerField()
+
+    def __str__(self):
+        return self.time
+
+    def get_absolute_url(self):
+        return f'/food/more/{self.pk}'
 class SearchFood(models.Model):
     kcal=models.FloatField(default=0,null=True)
     protein=models.FloatField(default=0,null=True)

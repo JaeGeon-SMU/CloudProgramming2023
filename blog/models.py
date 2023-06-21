@@ -72,6 +72,8 @@ class Post(models.Model):
     def get_content_markdown(self):
         return markdown(self.content)
 
+    def get_kcal(self):
+        return self.calorie
     #비만도 계산
     def get_calculate_pibw(self):
         if self.gender == 'M':
@@ -106,6 +108,15 @@ class Post(models.Model):
                 return f"{round(self.calorie-recommend_kcal,2)}kcal 만큼 더 먹었습니다"
             else :
                 return f"{round(recommend_kcal-self.calorie,2)}kcal 만큼 덜 먹었습니다"
+
+    def get_kcal_over_check_num(self):
+        if self.gender == 'M':
+            recommend_kcal = self.cm/100 * self.cm/100 * 22 * 30
+            return round(self.calorie-recommend_kcal,2)
+
+        elif self.gender =='W':
+            recommend_kcal = self.cm/100 * self.cm/100 * 21 * 30
+            return round(self.calorie-recommend_kcal,2)
 
     #bmi 지수 계산
     def get_calculate_bmi(self):
